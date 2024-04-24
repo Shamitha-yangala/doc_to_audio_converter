@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Files</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">All Uploaded Files</h1>
+        <div class="list-group">
+            {% for file in all_files %}
+                <a href="{% url 'upload_success' file.pk %}" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">{{ file.title }}</h5>
+                    <p class="mb-1">Uploaded by: {{ file.user_name }}</p>
+                    <small>{{ file.created_at }}</small>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

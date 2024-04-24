@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Success</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1 class="display-4">Upload Success</h1>
+            <p class="lead">Title: {{ user_upload.title }}</p>
+            <p class="lead">Attachment File: {{ user_upload.attachment }}</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Audio Files:</h2>
+                {% for audio_file in audio_files %}
+            
+                    <audio controls>
+                        <source src="/{{ audio_file }}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="/{{ audio_file }}" download> Download <i class="fas fa-download"></i>  </a>
+            
+                {% endfor %}
+
+            <!-- Link to download all audio files -->
+             <a href="{% url 'download_all_audios' user_upload.pk %}" class="btn btn-primary">Download All Audios</a>
+
+                
+            </div>
+
+
+            
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Document</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Upload Document</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% if errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {% for error in errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <div class="form-group">
+                        <label for="id_user_name">Your Name:</label>
+                        <input type="text" class="form-control" id="id_user_name" name="user_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_title">Document Title:</label>
+                        <input type="text" class="form-control" id="id_title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_description">Description:</label>
+                        <textarea class="form-control" id="id_description" name="description" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_attachment">Attachment (Supported formats: .txt, .doc, .docx):</label>
+                        <input type="file" class="form-control-file" id="id_attachment" name="attachment" accept=".txt, .doc, .docx" required>
+                        <small class="form-text text-muted">Please select a file to upload.</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                    <a href="{% url 'all_files'%}" style=" margin:50px;"><b>list of uploaded docs</b></a>
+                </form>
+                
+            </div>
+        </div>
+       
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
